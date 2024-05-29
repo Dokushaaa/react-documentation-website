@@ -1,0 +1,54 @@
+RewriteEngine On
+# use for authentication
+RewriteCond %{HTTP:Authorization} ^(.+)$
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+Header set Access-Control-Allow-Origin *
+
+#################################### ALL FOR DEVELOPER #################################
+
+### SETTING ROLES ###
+#{ for upload photo
+    RewriteRule ^upload/photo$ core/upload-photo.php [L]
+#}
+
+
+# for post table
+RewriteRule ^post$ controllers/post/post.php [L]
+RewriteRule ^post/([0-9]+)$ controllers/post/post.php?postid=$1 [L]
+RewriteRule ^post/active/([0-9]+)$ controllers/post/active.php?postid=$1 [L]
+RewriteRule ^post/search$ controllers/post/search.php [L]
+RewriteRule ^post/featured$ controllers/post/read-by-featured.php [L]
+
+# for category table
+RewriteRule ^category$ controllers/category/category.php [L]
+RewriteRule ^category/([0-9]+)$ controllers/category/category.php?categoryid=$1 [L]
+RewriteRule ^category/active/([0-9]+)$ controllers/category/active.php?categoryid=$1 [L]
+RewriteRule ^category/search$ controllers/category/search.php [L]
+
+# for tag table
+RewriteRule ^tag$ controllers/tag/tag.php [L]
+RewriteRule ^tag/([0-9]+)$ controllers/tag/tag.php?tagid=$1 [L]
+RewriteRule ^tag/active/([0-9]+)$ controllers/tag/active.php?tagid=$1 [L]
+RewriteRule ^tag/search$ controllers/tag/search.php [L]
+
+
+
+
+
+# { for user table
+# basic user table exec
+RewriteRule ^user$ controllers/user/user.php [L]
+RewriteRule ^user/([0-9]+)$ controllers/user/user.php?userid=$1 [L]
+RewriteRule ^user/active/([0-9]+)$ controllers/user/active.php?userid=$1 [L]
+RewriteRule ^user/search$ controllers/user/search.php [L]
+# for password management
+RewriteRule ^user/password$ controllers/user/set-password.php [L]
+RewriteRule ^user/reset$ controllers/user/reset-password.php [L]
+# for login
+RewriteRule ^user/login$ controllers/user/login.php [L]
+RewriteRule ^user/token$ controllers/user/token.php [L]
+# }
+

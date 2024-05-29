@@ -1,0 +1,8 @@
+CREATE TABLE `react_bloge`.`tbl_user` (`user_aid` INT NOT NULL AUTO_INCREMENT , `user_title` TEXT NOT NULL , `user_description` TEXT NOT NULL , `user_image` TEXT NOT NULL , `user_is_active` BOOLEAN NOT NULL , `user_published_date` VARCHAR(50) NOT NULL , `user_created` VARCHAR(50) NOT NULL , `user_datetime` VARCHAR(50) NOT NULL , PRIMARY KEY (`user_aid`)) ENGINE = InnoDB; 
+
+CREATE TABLE `react_bloge`.`tbl_popular` (`popular_aid` INT NOT NULL AUTO_INCREMENT , `popular_is_active` BOOLEAN NOT NULL , `popular_title` VARCHAR(100) NOT NULL , `popular_tag` VARCHAR(50) NOT NULL , `popular_image` TEXT NOT NULL ,`popular_author` VARCHAR(50) NOT NULL , `popular_article` TEXT NOT NULL , `popular_published_date` VARCHAR(20) NOT NULL  , `popular_created` VARCHAR(20) NOT NULL, `popular_datetime` VARCHAR(20) NOT NULL , PRIMARY KEY (`popular_aid`)) ENGINE = InnoDB; 
+
+CREATE TABLE `react_bloge`.`tbl_tag` (`tag_aid` INT NOT NULL AUTO_INCREMENT , `tag_title` VARCHAR(100) NOT NULL , `tag_is_active` BOOLEAN NOT NULL , `tag_created` VARCHAR(20) NOT NULL, `tag_datetime` VARCHAR(20) NOT NULL , PRIMARY KEY (`tag_aid`)) ENGINE = InnoDB; 
+
+
+ALTER TABLE `tbl_post` ADD `post_author` VARCHAR(100) NOT NULL AFTER `post_image`; 
