@@ -136,7 +136,7 @@
   }
 
   .container {
-    @apply max-w-[1000px] p-2 md:p-4 w-full mx-auto md:px-[7.5rem] px-7 transition-all
+    @apply max-w-[1000px] p-2 md:p-4 w-full mx-auto md:px-[7.5rem] px-7
     /*
     xs: 480px, 
     sm: 960px,
@@ -146,9 +146,7 @@
     ;
   }
 
-  button {
-    @apply transition-all duration-500;
-  }
+
 
   .input-wrap {
     @apply mb-3 relative;
@@ -241,7 +239,7 @@
 
 @layer components {
   nav {
-    @apply h-auto max-h-0 transition-all duration-500 overflow-hidden
+    @apply h-auto max-h-0 overflow-hidden
   }
 
   .nav-wrapper {

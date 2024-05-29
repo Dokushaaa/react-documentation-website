@@ -4,45 +4,77 @@ import {
 	FaBars,
 	FaFacebook,
 	FaInstagram,
+	FaMoon,
 	FaSearch,
+	FaSun,
 	FaTwitter,
 	FaYoutube,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { BsMoonStarsFill } from "react-icons/bs";
 
 const UiHeader = () => {
 	const [showNav, setShowNav] = React.useState(false);
 	const handleShowNav = () => setShowNav(!showNav);
+	function handleChangeColorTheme() {
+		if (
+			localStorage.getItem("theme") !== null &&
+			localStorage.getItem("theme") === "dark"
+		) {
+			localStorage.setItem("theme", "white");
+			document.querySelector("body").setAttribute("class", "");
+			document.querySelector("body").setAttribute("class", "white");
+		} else {
+			localStorage.setItem("theme", "dark");
+			document.querySelector("body").setAttribute("class", "");
+			document.querySelector("body").setAttribute("class", "dark");
+		}
+	}
+	React.useEffect(() => {
+		if (localStorage.getItem("theme") !== null) {
+			document.querySelector("body").setAttribute("class", "");
+			document
+				.querySelector("body")
+				.setAttribute("class", localStorage.getItem("theme"));
+		}
+	}, [localStorage.getItem("theme")]);
+	const readTheme = localStorage.getItem("theme");
+	const [showMode, setModeInfo] = React.useState(false);
+
+	const handleModeInfo = () => {
+		setModeInfo(!showMode);
+	};
+
 	return (
 		<header>
-			<div className='bg-purple text-white'>
+			<div className='bg-purple text-content'>
 				<div className='container'>
 					<div className='flex justify-between items-center py-2'>
 						<ul className='xl:flex gap-4 text-2xl hidden'>
 							<li>
 								<Link
-									className='flex items-center gap-5 text-white'
+									className='flex items-center gap-5 text-content'
 									to='#'>
 									<FaFacebook />
 								</Link>
 							</li>
 							<li>
 								<Link
-									className='flex items-center gap-5 text-white'
+									className='flex items-center gap-5 text-content'
 									to='#'>
 									<FaInstagram />
 								</Link>
 							</li>
 							<li>
 								<Link
-									className='flex items-center gap-5 text-white'
+									className='flex items-center gap-5 text-content'
 									to='#'>
 									<FaTwitter />
 								</Link>
 							</li>
 							<li>
 								<Link
-									className='flex items-center gap-5 text-white'
+									className='flex items-center gap-5 text-content'
 									to='#'>
 									<FaYoutube />
 								</Link>
@@ -50,20 +82,20 @@ const UiHeader = () => {
 						</ul>
 						<ul className='flex gap-4 items-center'>
 							<li>
-								<h4 className='mb-0'>React_documentation;</h4>
+								<h4 className='mb-0 '>React_documentation;</h4>
 							</li>
 						</ul>
-						<ul className='flex gap-4 text-lg'>
+						<ul className='flex gap-4 text-lg '>
 							<li>
 								<Link
-									className='flex items-center gap-5 text-white'
+									className='flex items-center gap-5 text-content'
 									to='/login'>
 									Login
 								</Link>
 							</li>
 							<li>
 								<Link
-									className='flex items-center gap-5 text-white'
+									className='flex items-center gap-5 text-content'
 									to='/register'>
 									Register
 								</Link>
@@ -75,7 +107,12 @@ const UiHeader = () => {
 			<div className='relative'>
 				<div className=' border-b border-purple'>
 					<div className='container flex justify-between items-center sticky top-0 bg-primary py-4'>
-						<h1 className='mb-0'>Documentation</h1>
+						<div className='flex items-center gap-2'>
+							<h1 className='mb-0'>Documentation</h1>
+							<button onClick={() => handleChangeColorTheme()}>
+								<BsMoonStarsFill className='rotate-120 text-content' />
+							</button>
+						</div>
 						<div className='flex gap-5 items-center'>
 							<button className='size-8 bg-content text-primary flex justify-center items-center rounded-lg text-sm'>
 								<FaSearch />
